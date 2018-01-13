@@ -85,6 +85,20 @@ function selectTurn(player1, player2) {
 }
 selectTurn(player1, player2) 
 
+// Run game! 
+
+function game(player1, player2){
+  var playerTurn ;
+  if (player1.turn) playerTurn = player1;
+  else playerTurn = player2;
+
+  function pickCard(player){
+    console.log('Heb je van #letter de #nummer?')
+  }
+
+  pickCard(playerTurn)
+}
+game(player1, player2)
 function changeTurn(){}
 
 function checkKwartet(hand){}
