@@ -96,8 +96,15 @@ selectTurn(player1, player2)
 
 function game(player1, player2){
   var playerTurn ;
-  if (player1.turn) playerTurn = player1;
-  else playerTurn = player2;
+  var otherPlayer;
+  if (player1.turn) {
+    playerTurn = player1
+    otherPlayer = player2
+  }
+  else {
+    playerTurn = player2
+    otherPlayer = player1
+  };
 
   function answerToCard(str){
     var letterRegex = /\w/;
@@ -110,6 +117,10 @@ function game(player1, player2){
     return card
   }
 
+  function checkCard(card){
+    // check whether otherPlayer.hand contains 'card'. 
+  }
+
   function pickCard(player){
     
     console.log('')
@@ -117,6 +128,7 @@ function game(player1, player2){
       
       var pickedCard = answerToCard(answer)
       console.log(`you picked: ${pickedCard.letter}${pickedCard.number}`);
+      checkCard(pickedCard);
       rl.close();
     });
   }
