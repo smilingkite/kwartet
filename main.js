@@ -25,29 +25,48 @@ function shuffle(array) {
 }
 deck = shuffle(deckCards(deck));
 
-function Player(hand = [], kwartet = []){
-  this.hand = hand;
-  this.kwartet = kwartet;
-  this.beurt = false;
+function Player(){
+  this.hand = [];
+  this.kwartet = [];
+  this.turn = false;
+  this.requestableCards = [];
 }
 var player1 = new Player;
 var player2 = new Player;
 
-function selectBeurt(player1, player2) {
+function dealCard(player, deck){
+  player.hand.push(deck.shift())
+}
+
+function dealCards(player1, player2, deck){
+  for (let i=0; i < 6; i++){
+    dealCard(player1, deck)
+    dealCard(player2, deck)
+  }
+  console.log('deck :', deck.length)
+}
+dealCards(player1, player2, deck)
+
+function sortHand(player){
+  var hand = player.hand;
+  
+}
+
+function selectTurn(player1, player2) {
   if (Math.random() < 0.5) {
-    player1.beurt = true;
+    player1.turn = true;
   } else {
-    player2.beurt = true;
+    player2.turn = true;
   }
 }
-selectBeurt(player1, player2) 
+selectTurn(player1, player2) 
 console.log(player1)
 console.log(player2)
 
-function hand(){
 
-}
+function changeTurn(){}
 
-function dealCards(){
 
-}
+
+function checkKwartet(hand){}
+
