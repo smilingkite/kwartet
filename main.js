@@ -117,8 +117,21 @@ function game(player1, player2){
     return card
   }
 
-  function checkCard(card){
+  function cardInHand(card){
     // check whether otherPlayer.hand contains 'card'. 
+
+    // return true/false
+  }
+
+  function changeTurn(){
+    if (playerTurn == player1) {
+      player1.turn = false;
+      player2.turn = true;
+    } else {
+      player1.turn = true;
+      player2.turn = false; 
+    }
+    console.log('De ander is aan de beurt!')
   }
 
   function pickCard(player){
@@ -128,7 +141,12 @@ function game(player1, player2){
       
       var pickedCard = answerToCard(answer)
       console.log(`you picked: ${pickedCard.letter}${pickedCard.number}`);
-      checkCard(pickedCard);
+      if (cardInHand(pickedCard)) {
+        // shift card from otherPlayer.hand, put it into playerTurn.hand
+      } else {
+        changeTurn()
+        game(player1, player2)
+      };
       rl.close();
     });
   }
@@ -136,7 +154,7 @@ function game(player1, player2){
   pickCard(playerTurn)
 }
 game(player1, player2)
-function changeTurn(){}
+
 
 function checkKwartet(hand){}
 
