@@ -75,7 +75,7 @@ function sortHand(player){
 }
 player1.hand = sortHand(player1)
 player2.hand = sortHand(player2)
-console.log(player1.hand)
+
 
 function selectTurn(player1, player2) {
   if (Math.random() < 0.5) {
