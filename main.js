@@ -1,9 +1,14 @@
+function Card(letter, number){
+  this.letter = letter;
+  this.number = number;
+}
+
 var deck;
 function deckCards(deck = []){
   for (let i = 1; i< 5; i++){
     for (let j = 0; j < 7; j++) {
       var letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G']
-      var card = letters[j] + i;
+      var card = new Card(letters[j], i)
       
       deck.push(card)
     }
@@ -49,7 +54,7 @@ dealCards(player1, player2, deck)
 
 function sortHand(player){
   var hand = player.hand;
-  
+  return hand.sort
 }
 
 function selectTurn(player1, player2) {
