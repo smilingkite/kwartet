@@ -1,3 +1,10 @@
+const readline = require('readline')
+
+var rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
 function Card(letter, number){
   this.letter = letter;
   this.number = number;
@@ -93,7 +100,14 @@ function game(player1, player2){
   else playerTurn = player2;
 
   function pickCard(player){
-    console.log('Heb je van #letter de #nummer?')
+    
+    console.log('')
+    var card = rl.question('Geef letter en nummer van de kaart die je wilt vragen: ', (answer) => {
+      
+      console.log(`you picked: ${answer}`);
+    
+      rl.close();
+    });
   }
 
   pickCard(playerTurn)
