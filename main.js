@@ -99,13 +99,24 @@ function game(player1, player2){
   if (player1.turn) playerTurn = player1;
   else playerTurn = player2;
 
+  function answerToCard(str){
+    var letterRegex = /\w/;
+    var numberRegex = /\d/;
+    var letter = letterRegex.exec(str)
+    letter = letter[0]
+    var number = numberRegex.exec(str)
+    number = number[0]
+    var card = new Card(letter, number)
+    return card
+  }
+
   function pickCard(player){
     
     console.log('')
     var card = rl.question('Geef letter en nummer van de kaart die je wilt vragen: ', (answer) => {
       
-      console.log(`you picked: ${answer}`);
-    
+      var pickedCard = answerToCard(answer)
+      console.log(`you picked: ${pickedCard.letter}${pickedCard.number}`);
       rl.close();
     });
   }
