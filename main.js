@@ -62,11 +62,20 @@ function sortHand(player){
     if (a > b) {
       return 1;
     }
-
+    var aNum = a.number
+    var bNum = b.number
+    if (aNum < bNum) {
+      return -1
+    }
+    if (aNum > bNum) {
+      return 1
+    }
     return 0;
   })
 }
-console.log(sortHand(player1))
+player1.hand = sortHand(player1)
+player2.hand = sortHand(player2)
+console.log(player1.hand)
 
 function selectTurn(player1, player2) {
   if (Math.random() < 0.5) {
