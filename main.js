@@ -76,7 +76,6 @@ function sortHand(player){
 player1.hand = sortHand(player1)
 player2.hand = sortHand(player2)
 
-
 function selectTurn(player1, player2) {
   if (Math.random() < 0.5) {
     player1.turn = true;
@@ -86,10 +85,7 @@ function selectTurn(player1, player2) {
 }
 selectTurn(player1, player2) 
 
-
 function changeTurn(){}
-
-
 
 function checkKwartet(hand){}
 
