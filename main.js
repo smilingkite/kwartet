@@ -48,14 +48,25 @@ function dealCards(player1, player2, deck){
     dealCard(player1, deck)
     dealCard(player2, deck)
   }
-  console.log('deck :', deck.length)
 }
 dealCards(player1, player2, deck)
 
 function sortHand(player){
   var hand = player.hand;
-  return hand.sort
+  return hand.sort(function (a, b) {
+    var a = a.letter
+    var b = b.letter
+    if (a < b) {
+      return -1;
+    }
+    if (a > b) {
+      return 1;
+    }
+
+    return 0;
+  })
 }
+console.log(sortHand(player1))
 
 function selectTurn(player1, player2) {
   if (Math.random() < 0.5) {
@@ -65,8 +76,6 @@ function selectTurn(player1, player2) {
   }
 }
 selectTurn(player1, player2) 
-console.log(player1)
-console.log(player2)
 
 
 function changeTurn(){}
