@@ -45,25 +45,37 @@ function Player(){
 }
 var player1 = new Player;
 var player2 = new Player;
-var playerTest = new Player;
-playerTest.hand = [ 
-  { letter: 'A', number: 2 },
-  { letter: 'A', number: 4 },
-  { letter: 'B', number: 4 },
-  { letter: 'B', number: 4 },
-  { letter: 'B', number: 4 },
-  { letter: 'B', number: 4 },
-  { letter: 'F', number: 1 }, 
-  { letter: 'F', number: 3 }, 
-  { letter: 'F', number: 4 },
-  { letter: 'G', number: 1 },
-  { letter: 'G', number: 2 },
-  { letter: 'G', number: 3 }, 
-  { letter: 'G', number: 3 },  
-]
+// var playerTest = new Player;
+// playerTest.hand = [ 
+//   { letter: 'A', number: 2 },
+//   { letter: 'A', number: 4 },
+//   { letter: 'B', number: 4 },
+//   { letter: 'F', number: 1 }, 
+//   { letter: 'F', number: 3 }, 
+//   { letter: 'F', number: 4 },
+//   { letter: 'G', number: 1 },
+//   { letter: 'G', number: 2 },
+//   { letter: 'G', number: 3 }, 
+//   { letter: 'G', number: 3 },  
+// ]
+// var playerTest2 = new Player;
+// playerTest2.hand = [ 
+//   { letter: 'A', number: 2 },
+//   { letter: 'A', number: 4 },
+//   { letter: 'B', number: 4 },
+//   { letter: 'B', number: 4 },
+//   { letter: 'B', number: 4 },
+//   { letter: 'B', number: 4 },
+//   { letter: 'F', number: 1 }, 
+//   { letter: 'F', number: 3 }, 
+//   { letter: 'F', number: 4 },
+//   { letter: 'G', number: 1 },
+//   { letter: 'G', number: 2 },  
+// ]
 
 function dealCard(player, deck){
-  player.hand.push(deck.shift())
+  if (deck.length > 0) player.hand.push(deck.shift())
+  if (deck.length === 0) console.log('Er zijn geen kaarten meer!')
 }
 
 function dealCards(player1, player2, deck){
@@ -173,6 +185,9 @@ function game(player1, player2){
   }
 
   function checkKwartet(player){
+    // checks if there are four card objects in the hand with the same letter
+    // if so > puts letter in kwartet array
+    //       > and deletes those four card objects from hand. 
     hand = player.hand;
     // voor elk van de waarden in letters, count number of objects.
     for (let i = 0; i < letters.length; i++){
@@ -185,31 +200,43 @@ function game(player1, player2){
         }
 
         if (counter === 4) {
+          console.log(`KWARTET, je hebt ${letter} compleet!`)
           player.kwartet.push(letter)
+          // delete alle kaarten met die letter uit hand. 
+     
+          let newHand = hand.filter(function (el) {
+              return (el.letter !== letter);
+          });
+          player.hand = newHand
           break
         }
       }
     }
   }
-  checkKwartet(playerTest)
-  console.log(playerTest.kwartet)
-
+  // checkKwartet(playerTest)
+  // console.log(playerTest.kwartet)
+  // console.log(playerTest.hand)
+  // checkKwartet(playerTest2)
+  // console.log(playerTest2.kwartet)
+  // console.log(playerTest2.hand)
   function pickCard(player){
     
     console.log('')
     var card = rl.question('Geef letter en nummer van de kaart die je wilt vragen: ', (answer) => {
       
       var pickedCard = answerToCard(answer)
-      console.log(pickedCard)
       if (checkCardInHand(pickedCard, otherPlayer.hand)) {
         console.log('Goeie gok: ik heb de kaart!');
         playerTurn.hand.push(pickedCard);
         sortHand(playerTurn);
+        checkKwartet(player);
         return game(player1, player2)
       } else {
+        const nextCard = deck[0]
         dealCard(playerTurn, deck)
+        checkKwartet(player);
         sortHand(playerTurn);
-        console.log('Je trekt kaart', displayCardConsole(playerTurn.hand[playerTurn.hand.length-1]), 'van de stapel')
+        console.log('Je trekt kaart', displayCardConsole(nextCard), 'van de stapel')
         changeTurn()
         return game(player1, player2)
       };
