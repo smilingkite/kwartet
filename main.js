@@ -297,7 +297,3 @@ function game(player1, player2){
 //   { letter: 'G', number: 2 },  
 // ]
 game(player1, player2)
-
-
-
-
