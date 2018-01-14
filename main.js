@@ -1,3 +1,4 @@
+// game in node (archive)
 const readline = require('readline')
 
 var rl = readline.createInterface({
