@@ -101,7 +101,13 @@ selectTurn(player1, player2)
 function game(player1, player2){
     if (player1.hand.length <1 || player2.hand.length < 1){
         if (deck.length > 0) {
-            if (player1.hand.length <1){
+            if (player1.hand.length < 1 && player1.turn) {
+                dealCard(player1, deck)
+                game(player1, player2)
+            } else if (player2.hand.length < 1 && player2.turn){
+                dealCard(player2, deck)
+                game(player1, player2)
+            } if (player1.hand.length < 1 && !player1.turn){
                 player2.hand.push(deck)
             } else {
                 player1.hand.push(deck)
