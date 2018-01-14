@@ -213,12 +213,7 @@ function game(player1, player2){
       }
     }
   }
-  // checkKwartet(playerTest)
-  // console.log(playerTest.kwartet)
-  // console.log(playerTest.hand)
-  // checkKwartet(playerTest2)
-  // console.log(playerTest2.kwartet)
-  // console.log(playerTest2.hand)
+
   function pickCard(player){
     
     console.log('')
@@ -246,6 +241,14 @@ function game(player1, player2){
   console.log('Dit zijn je kaarten: ')
   console.log(playerTurn.hand)
   pickCard(playerTurn)
+
+  // *** Tests
+  // checkKwartet(playerTest)
+  // console.log(playerTest.kwartet)
+  // console.log(playerTest.hand)
+  // checkKwartet(playerTest2)
+  // console.log(playerTest2.kwartet)
+  // console.log(playerTest2.hand)
 }
 game(player1, player2)
 
