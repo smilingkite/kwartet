@@ -9,12 +9,12 @@ function Card(letter, number){
   this.letter = letter;
   this.number = number;
 }
-
+const letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G']
 var deck;
 function deckCards(deck = []){
   for (let i = 1; i< 5; i++){
     for (let j = 0; j < 7; j++) {
-      var letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G']
+      
       var card = new Card(letters[j], i)
       
       deck.push(card)
@@ -108,7 +108,7 @@ function game(player1, player2){
 
   function answerToCard(str){
     // turns string answer into card object
-    str = str.toUpperCase()
+    // str = str.toUpperCase();
     var letterRegex = /\w/;
     var numberRegex = /\d/;
     var letter = letterRegex.exec(str)
@@ -142,7 +142,7 @@ function game(player1, player2){
         
       } else {
         dealCard(playerTurn, deck)
-        console.log(playerTurn.hand[playerTurn.hand.length])
+        console.log('Je trekt kaart', playerTurn.hand[playerTurn.hand.length-1], 'van de stapel')
         changeTurn()
         return game(player1, player2)
       };
