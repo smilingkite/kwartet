@@ -45,6 +45,19 @@ function Player(){
 }
 var player1 = new Player;
 var player2 = new Player;
+var playerTest = new Player;
+playerTest.hand = [ 
+  { letter: 'A', number: 2 },
+  { letter: 'A', number: 4 },
+  { letter: 'B', number: 4 },
+  { letter: 'F', number: 1 },
+  { letter: 'F', number: 2 },  
+  { letter: 'F', number: 3 }, 
+  { letter: 'F', number: 4 },
+  { letter: 'G', number: 1 },
+  { letter: 'G', number: 2 },
+  { letter: 'G', number: 3 },  
+]
 
 function dealCard(player, deck){
   player.hand.push(deck.shift())
@@ -146,15 +159,36 @@ function game(player1, player2){
       return false
     }
     
-    for(var i = 0; i < hand.length; i++) {
+    for(let i = 0; i < hand.length; i++) {
       if(hand[i].letter == letter && hand[i].number == number) {
           hand.splice(i, 1);
           return true
       }
-  }
+    }
 
   return false
   }
+
+  function checkKwartet(player){
+    hand = player.hand;
+    // voor elk van de waarden in letters, count number of objects.
+    for (let i = 0; i < letters.length; i++){
+      let letter = letters[i];
+      let counter = 0;
+
+      for(let j = 0; j < hand.length; j++) {
+        if(hand[j].letter === letter) {
+          counter++
+        }
+
+        if (counter === 4) {
+          player.kwartet.push(letter)
+        }
+      }
+    }
+  }
+  checkKwartet(playerTest)
+  console.log(playerTest.kwartet)
 
   function pickCard(player){
     
@@ -185,5 +219,5 @@ function game(player1, player2){
 game(player1, player2)
 
 
-function checkKwartet(hand){}
+
 
