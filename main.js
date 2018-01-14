@@ -63,20 +63,16 @@ function sortHand(player){
   return hand.sort(function (a, b) {
     var a = a.letter
     var b = b.letter
+    var aNum = a.number
+    var bNum = b.number
+
     if (a < b) {
       return -1;
     }
     if (a > b) {
       return 1;
     }
-    var aNum = a.number
-    var bNum = b.number
-    if (aNum < bNum) {
-      return -1
-    }
-    if (aNum > bNum) {
-      return 1
-    }
+
     return 0;
   })
 }
@@ -108,7 +104,7 @@ function game(player1, player2){
 
   function answerToCard(str){
     // turns string answer into card object
-    // str = str.toUpperCase();
+    str = str.toUpperCase();
     var letterRegex = /\w/;
     var numberRegex = /\d/;
     var letter = letterRegex.exec(str)
@@ -129,27 +125,32 @@ function game(player1, player2){
     }
     console.log('De ander is aan de beurt!')
   }
-
+  function displayCardConsole(card){
+    var card = card.letter + card.number
+    return card
+  }
   function pickCard(player){
     
     console.log('')
     var card = rl.question('Geef letter en nummer van de kaart die je wilt vragen: ', (answer) => {
       
       var pickedCard = answerToCard(answer)
-      console.log(`you picked: ${pickedCard.letter}${pickedCard.number}`);
+      console.log(`Je vroeg om: `, displayCardConsole(pickedCard));
       if (otherPlayer.hand.includes(pickedCard)) {
         console.log('Goeie gok: ik heb de kaart!');
         
       } else {
         dealCard(playerTurn, deck)
-        console.log('Je trekt kaart', playerTurn.hand[playerTurn.hand.length-1], 'van de stapel')
+        console.log('Je trekt kaart', displayCardConsole(playerTurn.hand[playerTurn.hand.length-1]), 'van de stapel')
         changeTurn()
         return game(player1, player2)
       };
       rl.close();
     });
   }
-  console.log('Dit zijn je kaarten', playerTurn.hand)
+  console.log('Dit zijn je kaarten: ')
+  // playerTurn.hand.forEach(displayCardConsole(Card))
+  console.log(playerTurn.hand)
   pickCard(playerTurn)
 }
 game(player1, player2)
