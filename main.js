@@ -48,33 +48,7 @@ var player1 = new Player;
 player1.name = 'Aafje'
 var player2 = new Player;
 player2.name = 'Ben'
-// var playerTest = new Player;
-// playerTest.hand = [ 
-//   { letter: 'A', number: 2 },
-//   { letter: 'A', number: 4 },
-//   { letter: 'B', number: 4 },
-//   { letter: 'F', number: 1 }, 
-//   { letter: 'F', number: 3 }, 
-//   { letter: 'F', number: 4 },
-//   { letter: 'G', number: 1 },
-//   { letter: 'G', number: 2 },
-//   { letter: 'G', number: 3 }, 
-//   { letter: 'G', number: 3 },  
-// ]
-// var playerTest2 = new Player;
-// playerTest2.hand = [ 
-//   { letter: 'A', number: 2 },
-//   { letter: 'A', number: 4 },
-//   { letter: 'B', number: 4 },
-//   { letter: 'B', number: 4 },
-//   { letter: 'B', number: 4 },
-//   { letter: 'B', number: 4 },
-//   { letter: 'F', number: 1 }, 
-//   { letter: 'F', number: 3 }, 
-//   { letter: 'F', number: 4 },
-//   { letter: 'G', number: 1 },
-//   { letter: 'G', number: 2 },  
-// ]
+
 
 function dealCard(player, deck){
   if (deck.length > 0) player.hand.push(deck.shift())
@@ -125,12 +99,24 @@ selectTurn(player1, player2)
 
 function game(player1, player2){
   if (player1.hand.length <1 || player2.hand.length < 1){
+    if (deck.length > 0) {
+      if (player1.hand.length <1){
+        player2.hand.push(deck)
+      } else {
+        player1.hand.push(deck)
+      }
+    }
+    checkKwartet(player1)
+    checkKwartet(player2)
     let winnaar
     console.log('Het spel is afgelopen!')
     if (player1.kwartet.length < player2.kwartet.length) { winnaar = player2}
-    if (player1.kwartet.length > player2.kwartet.length) { winnaar = player1}
-
-    console.log(`De winnaar is ${winnaar.name}`)
+    else if (player1.kwartet.length > player2.kwartet.length) { winnaar = player1}
+    else { 
+      console.log( 'Gelijk Spel')
+    return rl.close() 
+    }
+    console.log(`De winnaar is ${winnaar.name} met ${winnaar.kwartet.length} kwartetten.`)
     return rl.close() 
   }
   var playerTurn ;
@@ -166,7 +152,6 @@ function game(player1, player2){
     // checks whether card.letter appears in player.hand
     for (let c of player.hand) {
       if (card.letter === c.letter){ 
-        console.log('Je kunt om deze kaart vragen')
         return true
       }
     }
@@ -238,7 +223,7 @@ function game(player1, player2){
     }
   }
 
-  function pickCard(player){
+  function kwartetGame(player){
     
     console.log('')
     var card = rl.question('Geef letter en nummer van de kaart die je wilt vragen: ', (answer) => {
@@ -265,7 +250,7 @@ function game(player1, player2){
   }
   console.log('Dit zijn je kaarten: ')
   console.log(playerTurn.hand)
-  pickCard(playerTurn)
+  kwartetGame(playerTurn)
 
   // *** Tests
   // checkKwartet(playerTest)
@@ -275,6 +260,33 @@ function game(player1, player2){
   // console.log(playerTest2.kwartet)
   // console.log(playerTest2.hand)
 }
+// var playerTest = new Player;
+// playerTest.hand = [ 
+//   { letter: 'A', number: 2 },
+//   { letter: 'A', number: 4 },
+//   { letter: 'B', number: 4 },
+//   { letter: 'F', number: 1 }, 
+//   { letter: 'F', number: 3 }, 
+//   { letter: 'F', number: 4 },
+//   { letter: 'G', number: 1 },
+//   { letter: 'G', number: 2 },
+//   { letter: 'G', number: 3 }, 
+//   { letter: 'G', number: 3 },  
+// ]
+// var playerTest2 = new Player;
+// playerTest2.hand = [ 
+//   { letter: 'A', number: 2 },
+//   { letter: 'A', number: 4 },
+//   { letter: 'B', number: 4 },
+//   { letter: 'B', number: 4 },
+//   { letter: 'B', number: 4 },
+//   { letter: 'B', number: 4 },
+//   { letter: 'F', number: 1 }, 
+//   { letter: 'F', number: 3 }, 
+//   { letter: 'F', number: 4 },
+//   { letter: 'G', number: 1 },
+//   { letter: 'G', number: 2 },  
+// ]
 game(player1, player2)
 
 
