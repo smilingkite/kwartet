@@ -110,11 +110,11 @@ function game(player1, player2){
     try {
       var letter = letterRegex.exec(str)
       letter = letter[0]
-    } catch(e) { console.log('Je gaf geen geldige letter op')}
+    } catch(e) { console.log('Je gaf geen geldige letter op.')}
     try {
       var number = numberRegex.exec(str)
       number = number[0]
-    } catch (e) {console.log('Je gaf geen nummer op')}
+    } catch (e) {console.log('Je gaf geen nummer op.')}
 
     var card = new Card(letter, number)
     return card
@@ -137,14 +137,21 @@ function game(player1, player2){
   }
 
   function checkCardInHand(card, hand){
-    if (!letters.includes(card.letter)) {
-      console.log('Je vraagt om een niet-bestaande kaart')
+    var letter = card.letter;
+    var number = card.number;
+    if (!letters.includes(letter)) {
+      console.log('Je vraagt om een niet-bestaande kaart.')
       return false
     }
     
     // if (hand includes card)
     // return true
-    // else return false
+    for (var c of hand) {
+      if (letter == c.letter && number == c.number){
+        return true
+      }
+    }
+  return false
   }
 
   function pickCard(player){
