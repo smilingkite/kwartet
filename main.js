@@ -150,6 +150,18 @@ function game(player1, player2){
     return card
   }
 
+  function legitRequestedCard(card, player){
+    // checks whether card.letter appears in player.hand
+    for (let c of player.hand) {
+      if (card.letter === c.letter){ 
+        console.log('Je kunt om deze kaart vragen')
+        return true
+      }
+    }
+    console.log('Die kaart mag je niet vragen.')
+    return false
+  }
+
   function changeTurn(){
     if (playerTurn == player1) {
       player1.turn = false;
@@ -220,7 +232,8 @@ function game(player1, player2){
     var card = rl.question('Geef letter en nummer van de kaart die je wilt vragen: ', (answer) => {
       
       var pickedCard = answerToCard(answer)
-      if (checkCardInHand(pickedCard, otherPlayer.hand)) {
+      
+      if (checkCardInHand(pickedCard, otherPlayer.hand) && legitRequestedCard(pickedCard, playerTurn)) {
         console.log('Goeie gok: ik heb de kaart!');
         playerTurn.hand.push(pickedCard);
         sortHand(playerTurn);
