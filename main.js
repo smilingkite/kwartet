@@ -1,3 +1,4 @@
+// game in node (archive)
 const readline = require('readline')
 
 var rl = readline.createInterface({
@@ -105,8 +106,10 @@ function game(player1, player2){
         player1.hand.push(deck)
       }
     }
-    checkcheckKwartet(player1)
-    checkcheckKwartet(player2)
+
+    checkKwartet(player1)
+    checkKwartet(player2)
+
     let winnaar
     console.log('Het spel is afgelopen!')
     if (player1.kwartet.length < player2.kwartet.length) { winnaar = player2}
@@ -115,7 +118,9 @@ function game(player1, player2){
       console.log( 'Gelijk Spel')
     return rl.close() 
     }
-    console.log(`De winnaar is ${winnaar.name}`)
+
+    console.log(`De winnaar is ${winnaar.name} met ${winnaar.kwartet.length} kwartetten.`)
+
     return rl.close() 
   }
   var playerTurn ;
@@ -151,7 +156,6 @@ function game(player1, player2){
     // checks whether card.letter appears in player.hand
     for (let c of player.hand) {
       if (card.letter === c.letter){ 
-        console.log('Je kunt om deze kaart vragen')
         return true
       }
     }
