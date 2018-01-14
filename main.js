@@ -55,21 +55,23 @@ function dealCards(player1, player2, deck){
     dealCard(player1, deck)
     dealCard(player2, deck)
   }
+  sortHand(player1);
+  sortHand(player2);
 }
 dealCards(player1, player2, deck)
 
 function sortHand(player){
   var hand = player.hand;
   return hand.sort(function (a, b) {
-    var a = a.letter
-    var b = b.letter
+    var aa = a.letter
+    var bb = b.letter
     var aNum = a.number
     var bNum = b.number
 
-    if (a < b) {
+    if (aa < bb || ( aa === bb && aNum < bNum)) {
       return -1;
     }
-    if (a > b) {
+    if (aa > bb || (aa === bb && aNum > bNum)) {
       return 1;
     }
 
@@ -165,11 +167,13 @@ function game(player1, player2){
         console.log('Goeie gok: ik heb de kaart!');
         // take card from otherPlayer.hand, put it into playerTurn.hand
         playerTurn.hand.push(pickedCard);
+        sortHand(playerTurn);
         // console.log('Je hebt nu de volgende kaarten:')
         console.log(playerTurn.hand)
         return game(player1, player2)
       } else {
         dealCard(playerTurn, deck)
+        sortHand(playerTurn);
         console.log('Je trekt kaart', displayCardConsole(playerTurn.hand[playerTurn.hand.length-1]), 'van de stapel')
         changeTurn()
         return game(player1, player2)
