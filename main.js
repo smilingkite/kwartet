@@ -107,10 +107,15 @@ function game(player1, player2){
     str = str.toUpperCase();
     var letterRegex = /\w/;
     var numberRegex = /\d/;
-    var letter = letterRegex.exec(str)
-    letter = letter[0]
-    var number = numberRegex.exec(str)
-    number = number[0]
+    try {
+      var letter = letterRegex.exec(str)
+      letter = letter[0]
+    } catch(e) { console.log('Je gaf geen geldige letter op')}
+    try {
+      var number = numberRegex.exec(str)
+      number = number[0]
+    } catch (e) {console.log('Je gaf geen nummer op')}
+
     var card = new Card(letter, number)
     return card
   }
@@ -123,20 +128,33 @@ function game(player1, player2){
       player1.turn = true;
       player2.turn = false; 
     }
+    console.log('')
     console.log('De ander is aan de beurt!')
   }
   function displayCardConsole(card){
     var card = card.letter + card.number
     return card
   }
+
+  function checkCardInHand(card, hand){
+    if (!letters.includes(card.letter)) {
+      console.log('Je vraagt om een niet-bestaande kaart')
+      return false
+    }
+    
+    // if (hand includes card)
+    // return true
+    // else return false
+  }
+
   function pickCard(player){
     
     console.log('')
     var card = rl.question('Geef letter en nummer van de kaart die je wilt vragen: ', (answer) => {
       
       var pickedCard = answerToCard(answer)
-      console.log(`Je vroeg om: `, displayCardConsole(pickedCard));
-      if (otherPlayer.hand.includes(pickedCard)) {
+      // if (otherPlayer.hand.includes(pickedCard)) {
+      if (checkCardInHand(pickedCard, otherPlayer.hand)) {
         console.log('Goeie gok: ik heb de kaart!');
         
       } else {
