@@ -115,7 +115,7 @@ function game(player1, player2){
     } catch(e) { console.log('Je gaf geen geldige letter op.')}
     try {
       var number = numberRegex.exec(str)
-      number = number[0]
+      number = parseInt(number[0], 10) 
     } catch (e) {console.log('Je gaf geen nummer op.')}
 
     var card = new Card(letter, number)
@@ -162,13 +162,11 @@ function game(player1, player2){
     var card = rl.question('Geef letter en nummer van de kaart die je wilt vragen: ', (answer) => {
       
       var pickedCard = answerToCard(answer)
+      console.log(pickedCard)
       if (checkCardInHand(pickedCard, otherPlayer.hand)) {
         console.log('Goeie gok: ik heb de kaart!');
-        // take card from otherPlayer.hand, put it into playerTurn.hand
         playerTurn.hand.push(pickedCard);
         sortHand(playerTurn);
-        // console.log('Je hebt nu de volgende kaarten:')
-        console.log(playerTurn.hand)
         return game(player1, player2)
       } else {
         dealCard(playerTurn, deck)
@@ -181,7 +179,6 @@ function game(player1, player2){
     });
   }
   console.log('Dit zijn je kaarten: ')
-  // playerTurn.hand.forEach(displayCardConsole(Card))
   console.log(playerTurn.hand)
   pickCard(playerTurn)
 }
