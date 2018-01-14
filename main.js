@@ -107,6 +107,8 @@ function game(player1, player2){
   };
 
   function answerToCard(str){
+    // turns string answer into card object
+    str = str.toUpperCase()
     var letterRegex = /\w/;
     var numberRegex = /\d/;
     var letter = letterRegex.exec(str)
@@ -115,12 +117,6 @@ function game(player1, player2){
     number = number[0]
     var card = new Card(letter, number)
     return card
-  }
-
-  function cardInHand(card){
-    // check whether otherPlayer.hand contains 'card'. 
-
-    // return true/false
   }
 
   function changeTurn(){
@@ -141,16 +137,19 @@ function game(player1, player2){
       
       var pickedCard = answerToCard(answer)
       console.log(`you picked: ${pickedCard.letter}${pickedCard.number}`);
-      if (cardInHand(pickedCard)) {
-        // shift card from otherPlayer.hand, put it into playerTurn.hand
+      if (otherPlayer.hand.includes(pickedCard)) {
+        console.log('Goeie gok: ik heb de kaart!');
+        
       } else {
+        dealCard(playerTurn, deck)
+        console.log(playerTurn.hand[playerTurn.hand.length])
         changeTurn()
-        game(player1, player2)
+        return game(player1, player2)
       };
       rl.close();
     });
   }
-
+  console.log('Dit zijn je kaarten', playerTurn.hand)
   pickCard(playerTurn)
 }
 game(player1, player2)
