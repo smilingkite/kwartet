@@ -146,14 +146,13 @@ function game(player1, player2){
       return false
     }
     
-    // if (hand includes card)
-    // return true
-    for (var c of hand) {
-      if (letter == c.letter && number == c.number){
-        // delete card from hand
-        return true
+    for(var i = 0; i < hand.length; i++) {
+      if(hand[i].letter == letter && hand[i].number == number) {
+          hand.splice(i, 1);
+          return true
       }
-    }
+  }
+
   return false
   }
 
