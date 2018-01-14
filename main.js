@@ -130,7 +130,7 @@ function game(player1, player2){
     if (player1.kwartet.length > player2.kwartet.length) { winnaar = player1}
 
     console.log(`De winnaar is ${winnaar.name}`)
-    return
+    return rl.close() 
   }
   var playerTurn ;
   var otherPlayer;
