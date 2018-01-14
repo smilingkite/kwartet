@@ -44,7 +44,9 @@ function Player(){
   this.requestableCards = [];
 }
 var player1 = new Player;
+player1.name = 'Aafje'
 var player2 = new Player;
+player2.name = 'Ben'
 // var playerTest = new Player;
 // playerTest.hand = [ 
 //   { letter: 'A', number: 2 },
@@ -127,7 +129,7 @@ function game(player1, player2){
     if (player1.kwartet.length < player2.kwartet.length) { winnaar = player2}
     if (player1.kwartet.length > player2.kwartet.length) { winnaar = player1}
 
-    console.log(`De winnaar is ${winnaar}`)
+    console.log(`De winnaar is ${winnaar.name}`)
     return
   }
   var playerTurn ;
