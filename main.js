@@ -50,12 +50,15 @@ playerTest.hand = [
   { letter: 'A', number: 2 },
   { letter: 'A', number: 4 },
   { letter: 'B', number: 4 },
-  { letter: 'F', number: 1 },
-  { letter: 'F', number: 2 },  
+  { letter: 'B', number: 4 },
+  { letter: 'B', number: 4 },
+  { letter: 'B', number: 4 },
+  { letter: 'F', number: 1 }, 
   { letter: 'F', number: 3 }, 
   { letter: 'F', number: 4 },
   { letter: 'G', number: 1 },
   { letter: 'G', number: 2 },
+  { letter: 'G', number: 3 }, 
   { letter: 'G', number: 3 },  
 ]
 
@@ -183,6 +186,7 @@ function game(player1, player2){
 
         if (counter === 4) {
           player.kwartet.push(letter)
+          break
         }
       }
     }
