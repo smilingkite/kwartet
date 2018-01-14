@@ -121,6 +121,15 @@ selectTurn(player1, player2)
 // Run game! 
 
 function game(player1, player2){
+  if (player1.hand.length <1 || player2.hand.length < 1){
+    let winnaar
+    console.log('Het spel is afgelopen!')
+    if (player1.kwartet.length < player2.kwartet.length) { winnaar = player2}
+    if (player1.kwartet.length > player2.kwartet.length) { winnaar = player1}
+
+    console.log(`De winnaar is ${winnaar}`)
+    return
+  }
   var playerTurn ;
   var otherPlayer;
   if (player1.turn) {
