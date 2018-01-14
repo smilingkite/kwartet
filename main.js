@@ -148,6 +148,7 @@ function game(player1, player2){
     // return true
     for (var c of hand) {
       if (letter == c.letter && number == c.number){
+        // delete card from hand
         return true
       }
     }
@@ -160,10 +161,13 @@ function game(player1, player2){
     var card = rl.question('Geef letter en nummer van de kaart die je wilt vragen: ', (answer) => {
       
       var pickedCard = answerToCard(answer)
-      // if (otherPlayer.hand.includes(pickedCard)) {
       if (checkCardInHand(pickedCard, otherPlayer.hand)) {
         console.log('Goeie gok: ik heb de kaart!');
-        
+        // take card from otherPlayer.hand, put it into playerTurn.hand
+        playerTurn.hand.push(pickedCard);
+        // console.log('Je hebt nu de volgende kaarten:')
+        console.log(playerTurn.hand)
+        return game(player1, player2)
       } else {
         dealCard(playerTurn, deck)
         console.log('Je trekt kaart', displayCardConsole(playerTurn.hand[playerTurn.hand.length-1]), 'van de stapel')
