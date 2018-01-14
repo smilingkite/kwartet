@@ -98,11 +98,23 @@ selectTurn(player1, player2)
 
 function game(player1, player2){
   if (player1.hand.length <1 || player2.hand.length < 1){
+    if (deck.length > 0) {
+      if (player1.hand.length <1){
+        player2.hand.push(deck)
+      } else {
+        player1.hand.push(deck)
+      }
+    }
+    checkcheckKwartet(player1)
+    checkcheckKwartet(player2)
     let winnaar
     console.log('Het spel is afgelopen!')
     if (player1.kwartet.length < player2.kwartet.length) { winnaar = player2}
-    if (player1.kwartet.length > player2.kwartet.length) { winnaar = player1}
-
+    else if (player1.kwartet.length > player2.kwartet.length) { winnaar = player1}
+    else { 
+      console.log( 'Gelijk Spel')
+    return rl.close() 
+    }
     console.log(`De winnaar is ${winnaar.name}`)
     return rl.close() 
   }
@@ -211,7 +223,7 @@ function game(player1, player2){
     }
   }
 
-  function pickCard(player){
+  function kwartetGame(player){
     
     console.log('')
     var card = rl.question('Geef letter en nummer van de kaart die je wilt vragen: ', (answer) => {
@@ -238,7 +250,7 @@ function game(player1, player2){
   }
   console.log('Dit zijn je kaarten: ')
   console.log(playerTurn.hand)
-  pickCard(playerTurn)
+  kwartetGame(playerTurn)
 
   // *** Tests
   // checkKwartet(playerTest)
