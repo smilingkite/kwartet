@@ -47,33 +47,7 @@ var player1 = new Player;
 player1.name = 'Aafje'
 var player2 = new Player;
 player2.name = 'Ben'
-// var playerTest = new Player;
-// playerTest.hand = [ 
-//   { letter: 'A', number: 2 },
-//   { letter: 'A', number: 4 },
-//   { letter: 'B', number: 4 },
-//   { letter: 'F', number: 1 }, 
-//   { letter: 'F', number: 3 }, 
-//   { letter: 'F', number: 4 },
-//   { letter: 'G', number: 1 },
-//   { letter: 'G', number: 2 },
-//   { letter: 'G', number: 3 }, 
-//   { letter: 'G', number: 3 },  
-// ]
-// var playerTest2 = new Player;
-// playerTest2.hand = [ 
-//   { letter: 'A', number: 2 },
-//   { letter: 'A', number: 4 },
-//   { letter: 'B', number: 4 },
-//   { letter: 'B', number: 4 },
-//   { letter: 'B', number: 4 },
-//   { letter: 'B', number: 4 },
-//   { letter: 'F', number: 1 }, 
-//   { letter: 'F', number: 3 }, 
-//   { letter: 'F', number: 4 },
-//   { letter: 'G', number: 1 },
-//   { letter: 'G', number: 2 },  
-// ]
+
 
 function dealCard(player, deck){
   if (deck.length > 0) player.hand.push(deck.shift())
@@ -274,6 +248,33 @@ function game(player1, player2){
   // console.log(playerTest2.kwartet)
   // console.log(playerTest2.hand)
 }
+// var playerTest = new Player;
+// playerTest.hand = [ 
+//   { letter: 'A', number: 2 },
+//   { letter: 'A', number: 4 },
+//   { letter: 'B', number: 4 },
+//   { letter: 'F', number: 1 }, 
+//   { letter: 'F', number: 3 }, 
+//   { letter: 'F', number: 4 },
+//   { letter: 'G', number: 1 },
+//   { letter: 'G', number: 2 },
+//   { letter: 'G', number: 3 }, 
+//   { letter: 'G', number: 3 },  
+// ]
+// var playerTest2 = new Player;
+// playerTest2.hand = [ 
+//   { letter: 'A', number: 2 },
+//   { letter: 'A', number: 4 },
+//   { letter: 'B', number: 4 },
+//   { letter: 'B', number: 4 },
+//   { letter: 'B', number: 4 },
+//   { letter: 'B', number: 4 },
+//   { letter: 'F', number: 1 }, 
+//   { letter: 'F', number: 3 }, 
+//   { letter: 'F', number: 4 },
+//   { letter: 'G', number: 1 },
+//   { letter: 'G', number: 2 },  
+// ]
 game(player1, player2)
 
 
