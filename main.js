@@ -106,8 +106,10 @@ function game(player1, player2){
         player1.hand.push(deck)
       }
     }
+
     checkKwartet(player1)
     checkKwartet(player2)
+
     let winnaar
     console.log('Het spel is afgelopen!')
     if (player1.kwartet.length < player2.kwartet.length) { winnaar = player2}
@@ -116,7 +118,9 @@ function game(player1, player2){
       console.log( 'Gelijk Spel')
     return rl.close() 
     }
+
     console.log(`De winnaar is ${winnaar.name} met ${winnaar.kwartet.length} kwartetten.`)
+
     return rl.close() 
   }
   var playerTurn ;
