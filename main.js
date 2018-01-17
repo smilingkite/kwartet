@@ -1,4 +1,5 @@
 const readline = require("readline")
+const clear = require("clear")
 
 var rl = readline.createInterface({
   input: process.stdin,
@@ -41,7 +42,7 @@ function Player(){
   this.hand = []
   this.kwartet = []
   this.turn = false
-  this.requestableCards = []
+  this.requestableCards = []  
 }
 var player1 = new Player
 player1.name = "Aafje"
@@ -84,6 +85,7 @@ function sortHand(player){
 }
 player1.hand = sortHand(player1)
 player2.hand = sortHand(player2)
+
 
 function selectTurn(player1, player2) {
   if (Math.random() < 0.5) {
@@ -176,7 +178,7 @@ function game(player1, player2){
       player1.turn = true
       player2.turn = false 
     }
-    console.log("")
+    clear()
     console.log("De ander is aan de beurt!")
   }
   function displayCardConsole(card){
