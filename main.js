@@ -42,7 +42,6 @@ function Player(){
   this.hand = []
   this.kwartet = []
   this.turn = false
-  this.requestableCards = []  
 }
 var player1 = new Player
 player1.name = "Aafje"
