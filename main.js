@@ -239,7 +239,7 @@ function game(player1, player2){
       
       var pickedCard = answerToCard(answer)
       
-      if (checkCardInHand(pickedCard, otherPlayer.hand) && legitRequestedCard(pickedCard, playerTurn)) {
+      if (legitRequestedCard(pickedCard, playerTurn) && checkCardInHand(pickedCard, otherPlayer.hand) ) {
         console.log(`Goeie gok: ik heb de kaart ${displayCardConsole(pickedCard)}!`)
         playerTurn.hand.push(pickedCard)
         sortHand(playerTurn)
